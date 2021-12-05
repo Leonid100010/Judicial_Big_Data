@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='jquery.serializejson.js') }}"></script>
+<title>数据科学大作业！</title>
+<style type="text/css">
+	body{
+		background-color:white;
+		margin:auto;
+	}
+	#header{
+		background-color: #9A2EF7;
+		text-align:center;
+		color:white;
+		padding:20px;
+		width: 1400px;
+	}
+	#Case{
+		height:300px;
+		width: 100%;
+		font-family: Microsoft Yahei;
+		border-style: outset;
+		border-radius: 20px;
+		border-width: thick;
+		padding:30px;
+		box-sizing:border-box;
+	}
+	button{
+		background: #B875F6;
+		border-radius: 5px;
+		color:white;
+		padding:15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-family: Microsoft Yahei;
+		font-size: 16px;
+		opacity: 0.6;
+		transition: 0.3s;
+		cursor: pointer;
+		margin:15px;
+	}
+	.file-box{
+		display: inline-block;
+		position: relative;
+		padding: 16px 28px;
+		overflow: hidden;
+		background: #B875F6;
+		float:left;
+		border-radius: 5px;
+		transition: 0.3s;
+		margin-right: 10px; 
+		margin-top: 10px;
+	}
+	.file-box [type="file"]{
+		display: block;
+		filter: alpha(opacity=0);
+		position: absolute;
+		font-size: 100px;
+		right: 0;
+		top: 0;
+		opacity: 0;
+		cursor: pointer;
+	}
+	.section{
+		background-color:white;
+		width: 350px;
+		padding: 10px;
+		text-align: center;
+	}
+	.container{
+		width:400px;
+		height: 350px;
+		margin: 0 auto;
+	}
+	input[type="button"]{
+		background: #B875F6;
+		border-radius: 5px;
+		color:white;
+		padding:15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-family: Microsoft Yahei;
+		font-size: 16px;
+		opacity: 0.6;
+		transition: 0.3s;
+		cursor: pointer;
+	}
+	ul{
+		margin:0 auto;
+		padding: 0;
+		position: relative;
+		display: flex;
+		border-bottom: lpx solid #CAC9C9;
+	}
+	ul li{
+		list-style: none;
+		width:100px;
+		height:46px;
+	}
+	ul li input[type="radio"]{
+		display: none;
+	}
+	input + label{
+		display: block;
+		cursor: pointer;
+		width: 100px;
+		height: :46px;
+		line-height: 46px;
+		text-align: center;
+		font-size: 16px;
+	}
+	input + label + div{
+		width:100%;
+		display: none;
+		position: absolute;
+		left:0px;
+		top:48px;
+	}
+	input:checked + label {
+		font-weight: bold;
+		color:#1354a6;
+		position: relative;
+	}
+	input: checked + label:after{
+		content:"";
+		width:80px;
+		height:2px;
+		position: absolute;
+		bottom: 0;
+		left:10px;
+		background: #1354a6;
+	}
+	input:checked +label +div{
+		height:276px;
+		width:600px;
+		display: flex;
+		justify-content:flex-start;
+		align-items: center;
+		flex-wrap: wrap;
+		border-style: groove;
+	}
+	</style>
+</head>
+<body>
+
+	
+<div id="header"><h1>数据科学基础大作业</h1></div>
+<textarea name="case"  placeholder="上传案例文件" id="Case" ></textarea>
+<div align="center">
+	<label class="file-box">
+	选择文件<input type="file" id="fileInput" name="file" >
+	</label>
+<button onclick="hbj();">黄宝</button>
+
+	</div>
+
+<form>
+	<fieldset>
+
+        <div id ="addcheckbox">这里是选择框</div>  <!--form可改，只保留这一行也行，只需要id不变-->
+	
+	</fieldset>
+</form>
+
+          
+<input type="text" name="textbox1" value = " ">
+<button onclick="submit();">提交</button>
+<button onclick="sssss();">sssss</button>
+<input type="button" name="btn1" value="保存案件与标注" onClick="savefile('newfile.txt',data)">
+
+<div class="container">
+	<ul>
+		<li>
+			<input type="radio" name="changeTab" id="t1" checked="checked">
+			<label for="t1">当事人</label>
+			<div id="addcheckbox1">这里是选择框1</div>
+		</li>
+		<li>
+			<input type="radio" name="changeTab" id="t2">
+			<label for="t2">性别</label>
+			<div id="addcheckbox2">这里是选择框2</div>
+		</li>
+		<li>
+			<input type="radio" name="changeTab" id="t3">
+			<label for="t3">民族</label>
+			<div id="addcheckbox3">这里是选择框3</div>
+		</li>
+		<li>
+			<input type="radio" name="changeTab" id="t4">
+			<label for="t4">出生地</label>
+			<div id="addcheckbox4">这里是选择框4</div>
+		</li>
+		<li>
+			<input type="radio" name="changeTab" id="t5">
+			<label for="t5">案由</label>
+			<div id="addcheckbox5">这里是选择框5</div>
+		</li>
+		<li>
+			<input type="radio" name="changeTab" id="t6">
+			<label for="t6">相关法院</label>
+			<div id="addcheckbox6">这里是选择框6</div>
+		</li>
+	</ul>
+	
+	</div>
+<div align="center">
+<button onclick="getdata();">get</button>
+<button onclick="saveJSON(jsonObj,'aaa.json');">save</button>
+	</div>
+
+<script language="JavaScript" type="text/javascript">
+	var jsonObj = {}
+document.getElementById('fileInput').addEventListener('change',function selectFileChanged(){
+    if(this.files.length == 0){
+        alert("NOT VALID FILE")
+        return;
+    }
+	const reader = new FileReader();
+	reader.onload = function fileReadCompleted(){
+    	document.getElementById("Case").value=reader.result;
+	}
+	reader.readAsText(this.files[0]);
+	}
+)
+
+function hbj(){
+    var str = $('#Case').val()
+    console.log(str)
+	$.ajax({
+		url:"result",//数据提交到result处
+		type:"POST",//采用post方法提交
+		data:{'Case':str},
+		success:function(data){ //现在的data是一个string类型
+			var datalist = data.split(" ")
+			$("#addcheckbox").empty();
+			$("#addcheckbox1").empty();
+			$("#addcheckbox2").empty();
+			$("#addcheckbox3").empty();
+			$("#addcheckbox4").empty();
+			$("#addcheckbox5").empty();
+			$("#addcheckbox6").empty();
+			for(var x = 0;x<datalist.length;x++){
+				console.log(datalist[x])
+				$("#addcheckbox").append("<label><input type='checkbox' id= 'box"+x+"' name='box' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>");
+				$("#addcheckbox1").append("<label><input type='checkbox' id= 'box1"+x+"' name='box1' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>")
+				$("#addcheckbox2").append("<label><input type='checkbox' id= 'box2"+x+"' name='box2' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>")
+				$("#addcheckbox3").append("<label><input type='checkbox' id= 'box3"+x+"' name='box3' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>")
+				$("#addcheckbox4").append("<label><input type='checkbox' id= 'box4"+x+"' name='box4' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>")
+				$("#addcheckbox5").append("<label><input type='checkbox' id= 'box5"+x+"' name='box5' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>")
+				$("#addcheckbox6").append("<label><input type='checkbox' id= 'box6"+x+"' name='box6' value='"+datalist[x]+"'> "+datalist[x]+"</label><br>")
+			} //<br>可改，主要为对齐方式
+			//alert(typeof(data))
+			//alert(data)
+			//alert(datalist[0])
+		}
+
+	})
+}
+
+function getdata(){
+	
+	for(var i =1;i<=6;i++){
+		var templist = new Array();
+		var l = document.getElementsByName("box"+i)
+		console.log(l.length)
+		for(var x = 0;x<l.length;x++){
+			if($('#box'+i+x).prop("checked") == true){
+				templist.push($('#box'+x).val())
+				console.log("kkk")
+			}
+			var a = $('#box'+x).val()
+			console.log(a)
+			console.log(templist)
+		}
+		if(i==1){
+			jsonObj.Criminals = templist
+		}
+		else if(i==2){
+			jsonObj.Gender = templist
+		}
+		else if(i==3){
+			jsonObj.Ethnicity = templist
+		}
+		else if(i==4){
+			jsonObj.Birthplace = templist
+		}
+		else if(i==5){
+			jsonObj.Accusation = templist
+		}
+		else if(i==6){
+			jsonObj.Courts = templist
+		}
+		console.log(jsonObj)
+	}
+	
+}
+
+function saveJSON(data, filename){
+	if(!data) {
+		alert('保存的数据为空');
+		return;
+	}
+	if(!filename) 
+		filename = 'json.json'
+	if(typeof data === 'object'){
+		data = JSON.stringify(data, undefined, 4)
+	}
+	var blob = new Blob([data], {type: 'text/json'}),
+	e = document.createEvent('MouseEvents'),
+	a = document.createElement('a')
+	a.download = filename
+	a.href = window.URL.createObjectURL(blob)
+	a.dataset.downloadurl = ['text/json', a.download, a.href].join(':')
+	e.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
+	a.dispatchEvent(e)
+}
+
+</script>
+</body>
+</html>
